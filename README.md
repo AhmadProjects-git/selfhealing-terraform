@@ -1,85 +1,152 @@
-# 🌍 AWS Self-Healing Infrastructure using Terraform + Nginx
+# 🌍 **Autonomous Self-Healing Infrastructure using AWS + Terraform + Nginx**
 
-This project demonstrates how to build a **self-healing web server infrastructure** on AWS using **Terraform** and **Auto Scaling Groups**.  
-If an EC2 instance fails or is terminated, AWS automatically recreates it — ensuring **zero downtime**.
-
----
-
-## 🚀 Features
-✅ Fully automated AWS infrastructure provisioning  
-✅ Auto-healing EC2 instances using Auto Scaling Group  
-✅ Load balancing using Application Load Balancer (ALB)  
-✅ Nginx web server automatically installed via user data  
-✅ Infrastructure as Code using Terraform  
+This project showcases how to build a **fully automated and self-healing web server infrastructure** on **Amazon Web Services (AWS)** using **Terraform**.
+If any EC2 instance fails or is terminated, the **Auto Scaling Group (ASG)** automatically recreates it — ensuring **zero downtime** and **high availability**.
 
 ---
 
-## 🧩 Project Structure
+## 🚀 **Features**
 
-selfhealing-terraform/
+✅ Fully automated AWS infrastructure provisioning via **Terraform**
+✅ **Self-healing EC2 instances** using Auto Scaling Groups
+✅ **Application Load Balancer (ALB)** for traffic distribution
+✅ **Nginx web server** auto-installed using a user data script
+✅ Built entirely as **Infrastructure as Code (IaC)**
+✅ Modular, reusable Terraform configuration
+
+---
+
+## 🧩 **Project Structure**
+
+```
+Autonomous-SelfHealing-Infrastructure/
 │
-├── main.tf # Main Terraform configuration
-├── variables.tf # Input variables (VPC, subnets, etc.)
-├── userdata.tpl # Nginx auto-installation + HTML page script
-├── outputs.tf # ALB DNS output
-└── README.md # Project documentation
-
-
----
-
-## ⚙️ Prerequisites
-- AWS account (with admin access)
-- AWS CLI configured locally  
-- Terraform v1.x installed  
-- Git installed  
+├── main.tf            # Core infrastructure definitions
+├── provider.tf        # AWS provider configuration
+├── variables.tf       # Input variables (region, AMI, instance type, etc.)
+├── security.tf        # Security group and firewall rules
+├── vpc.tf             # VPC, subnets, and networking configuration
+├── userdata.tpl       # Nginx auto-installation and sample HTML page
+├── outputs.tf         # ALB DNS output after deployment
+├── .terraform.lock.hcl# Terraform dependency lock file
+└── README.md          # Project documentation
+```
 
 ---
 
-## 🪜 Step-by-Step Setup
+## ⚙️ **Prerequisites**
 
-### **Step 1: Clone the repository**
+Before you begin, make sure you have the following:
+
+* ☁️ **AWS Account** (with administrative permissions)
+* 💻 **AWS CLI** installed and configured locally
+* 🧱 **Terraform v1.x** installed
+* 🔗 **Git** installed
+
+---
+
+## 🪜 **Setup Instructions**
+
+### **Step 1: Clone the Repository**
 
 ```bash
-git clone https://github.com/<your-username>/selfhealing-terraform.git
-cd selfhealing-terraform
-Step 2: Initialize Terraform
+git clone https://github.com/AhmadProjects-git/Autonomous-SelfHealing-Infrastructure.git
+cd Autonomous-SelfHealing-Infrastructure
+```
+
+### **Step 2: Initialize Terraform**
+
+```bash
 terraform init
+```
 
-Step 3: Review the plan
+### **Step 3: Review the Plan**
+
+```bash
 terraform plan
+```
 
-Step 4: Deploy the infrastructure
+### **Step 4: Deploy the Infrastructure**
+
+```bash
 terraform apply -auto-approve
+```
 
+✅ Terraform will:
 
-Terraform will:
+* Create a **VPC**, **subnets**, and **security groups**
+* Launch an **EC2 Auto Scaling Group** with Nginx installed
+* Configure and attach an **Application Load Balancer**
+* Output the **ALB DNS endpoint**
 
-Create a VPC, subnets, and security groups
+---
 
-Launch an EC2 Auto Scaling Group with Nginx installed
+## 🌐 **Step 5: Access Your Application**
 
-Attach a Load Balancer
+Once deployment completes, Terraform will output something like:
 
-Output the ALB DNS URL
-
-🌐 Step 5: Access the Application
-
-After deployment, Terraform outputs a DNS like:
-
+```
 alb_dns_name = selfheal-alb-1234567890.us-east-1.elb.amazonaws.com
+```
 
+Open that URL in your browser 🌍
+You’ll see a green **“Nginx + Terraform + AWS”** webpage — confirming successful deployment ✅
 
-Visit that URL in your browser — you’ll see a green Nginx + Terraform + AWS web page.
+---
 
-🧠 Step 6: Test Self-Healing
+## 🧠 **Step 6: Test the Self-Healing Capability**
 
-Go to AWS Console → EC2 → Instances
-➡️ Terminate the running instance manually.
+1. Log in to the **AWS Console → EC2 → Instances**
+2. Manually **terminate** the running instance 🧨
+3. Watch the **Auto Scaling Group** automatically launch a **new instance** 🎯
 
-Within a minute, Auto Scaling will automatically launch a new instance — your app stays live 🎯.
+Your application will remain available throughout — **no downtime**!
 
-🧹 Step 7: Clean Up Resources
+---
 
-To avoid charges:
+## 🧹 **Step 7: Clean Up Resources**
 
+When you’re done testing, destroy all resources to avoid costs:
+
+```bash
 terraform destroy -auto-approve
+```
+
+---
+
+## 🧰 **Technologies Used**
+
+* **AWS EC2, VPC, ALB, Auto Scaling Groups**
+* **Terraform (IaC)**
+* **Nginx Web Server**
+* **User Data scripting**
+
+---
+
+## 👨‍💻 **Maintainer**
+
+**Developed by:** [@AhmadProjects-git](https://github.com/AhmadProjects-git)
+🌐 GitHub Repository: [Autonomous-SelfHealing-Infrastructure](https://github.com/AhmadProjects-git/Autonomous-SelfHealing-Infrastructure)
+
+---
+
+## 💬 **Support & Contributions**
+
+💡 Found an issue or have ideas to improve?
+
+* Open an [Issue](https://github.com/AhmadProjects-git/Autonomous-SelfHealing-Infrastructure/issues)
+* Or submit a [Pull Request](https://github.com/AhmadProjects-git/Autonomous-SelfHealing-Infrastructure/pulls)
+
+---
+
+**Happy Automating! 🤖⚙️**
+*Build resilient, self-healing, and autonomous cloud systems — the DevOps way!* 🌩️
+
+---
+
+🏁 License
+
+This project is licensed under the MIT License.
+You’re free to use, modify, and distribute it — just give credit 💙
+
+---
